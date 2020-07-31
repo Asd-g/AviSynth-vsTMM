@@ -67,7 +67,7 @@ vsTMM (clip, int "mode", int "order", int "field", int "length", int "mtype", in
     Must be between -2 and 255.\
     Default: mtqL = mthL = mtqC = mthC = -1.
     
-- nt/minthresh/maxthresh\
+- nt, minthresh, maxthresh\
     nt sets the noise threshold, which will be added to the value of each per-pixel threshold when determining if a pixel is stationary or not. After the addition of 'nt', any threshold less than minthresh will be increased to minthresh and any threshold greater than maxthresh will be decreased to maxthresh.\
     Must be between 0 and 255.\
     Default: nt = 2; minthresh = 4; maxthresh = 75.
