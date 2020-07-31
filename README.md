@@ -83,25 +83,25 @@ vsTMM (clip, int "mode", int "order", int "field", int "length", int "mtype", in
 
 - metric\
     Sets which spatial combing metric is used to detect combed pixels.\
-    It has effect when athresh is greater than -1.
-```
-Assume 5 neighboring pixels (a,b,c,d,e) positioned vertically.
-    a
-    b
-    c
-    d
-    e
-
-0:  d1 = c - b;
-    d2 = c - d;
-    if ((d1 > cthresh && d2 > cthresh) || (d1 < -cthresh && d2 < -cthresh))
-    {
-       if (abs(a+4*c+e-3*(b+d)) > cthresh*6) it's combed;
-    }
-
-1:  val = (b - c) * (d - c);
-    if (val > cthresh*cthresh) it's combed;
-```
+    It has effect when athresh is greater than -1.    
+    ```
+    Assume 5 neighboring pixels (a,b,c,d,e) positioned vertically.
+        a
+        b
+        c
+        d
+        e
+    
+    0:  d1 = c - b;
+        d2 = c - d;
+        if ((d1 > cthresh && d2 > cthresh) || (d1 < -cthresh && d2 < -cthresh))
+        {
+        if (abs(a+4*c+e-3*(b+d)) > cthresh*6) it's combed;
+        }
+    
+    1:  val = (b - c) * (d - c);
+        if (val > cthresh*cthresh) it's combed;
+    ```
     Metric 0 is what TDeint always used previous to v1.0 RC7. Metric 1 is the combing metric used in Donald Graft's FieldDeinterlace()/IsCombed() funtions in decomb.dll.\
     Default: 0.
 
