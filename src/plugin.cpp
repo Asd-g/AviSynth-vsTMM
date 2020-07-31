@@ -109,8 +109,10 @@ AVSValue __cdecl Create_vsTMM(AVSValue args, void* user_data, IScriptEnvironment
 
 	int opt = args[22].AsInt(-1);
 
-	if (opt < -1 || opt > 2)
-		env->ThrowError("vsTMM: opt must be between -1..2");
+	if (opt < -1 || opt > 3)
+		env->ThrowError("vsTMM: opt must be between -1..3");
+	if (!(env->GetCPUFlags() & CPUF_AVX512F) && opt == 3)
+		env->ThrowError("vsTMM: opt=3 requires AVX512F.");
 	if (!(env->GetCPUFlags() & CPUF_AVX2) && opt == 2)
 		env->ThrowError("vsTMM: opt=2 requires AVX2.");
 	if (!(env->GetCPUFlags() & CPUF_SSE2) && opt == 1)

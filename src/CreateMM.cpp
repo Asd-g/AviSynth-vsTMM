@@ -457,7 +457,7 @@ CreateMM::CreateMM(PClip _child, int ttype, int mtqL, int mthL, int mtqC, int mt
         default: vipad.pixel_type = vimsk.pixel_type = VideoInfo::CS_Y16; break;
     }
 
-    widthPad = 32 / vi.ComponentSize();
+    widthPad = 64 / vi.ComponentSize();
     vipad.width = vimsk.width = vi.width + widthPad * 2;
     vimsk.height = vi.height * 2;
 }
@@ -486,7 +486,22 @@ PVideoFrame __stdcall CreateMM::GetFrame(int n, IScriptEnvironment* env)
         {
             if (comp_size == 1)
             {
-                if ((!!(env->GetCPUFlags() & CPUF_AVX2) && opt_ < 0) || opt_ == 2)
+                if (opt_ == 3)
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        copyPad<uint8_t>(src[i], pad[i], plane_, widthPad, env);
+                        threshMask_avx512<uint8_t, Vec64uc, 64>(pad[i], msk[i][0], plane_, env);
+                    }
+
+                    for (int i = 0; i < 2; i++)
+                        motionMask_avx512<uint8_t, Vec64uc, 64>(pad[i], msk[i][0], pad[i + 1], msk[i + 1][0], msk[i][1], plane_, env);
+
+                    motionMask_avx512<uint8_t, Vec64uc, 64>(pad[0], msk[0][0], pad[2], msk[2][0], dst[0], plane_, env);
+                    andMasks_avx512<uint8_t, Vec64uc, 64>(msk[0][1], msk[1][1], dst[0], plane_, env);
+                    combineMasks_avx512<uint8_t, Vec64uc, 64>(dst[0], dst[1], plane_, env);
+                }
+                else if ((!!(env->GetCPUFlags() & CPUF_AVX2) && opt_ < 0) || opt_ == 2)
                 {
                     for (int i = 0; i < 3; i++)
                     {
@@ -534,7 +549,22 @@ PVideoFrame __stdcall CreateMM::GetFrame(int n, IScriptEnvironment* env)
             }
             else
             {
-                if ((!!(env->GetCPUFlags() & CPUF_AVX2) && opt_ < 0) || opt_ == 2)
+                if (opt_ == 3)
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        copyPad<uint16_t>(src[i], pad[i], plane_, widthPad, env);
+                        threshMask_avx512<uint16_t, Vec32us, 32>(pad[i], msk[i][0], plane_, env);
+                    }
+
+                    for (int i = 0; i < 2; i++)
+                        motionMask_avx512<uint16_t, Vec32us, 32>(pad[i], msk[i][0], pad[i + 1], msk[i + 1][0], msk[i][1], plane_, env);
+
+                    motionMask_avx512<uint16_t, Vec32us, 32>(pad[0], msk[0][0], pad[2], msk[2][0], dst[0], plane_, env);
+                    andMasks_avx512<uint16_t, Vec32us, 32>(msk[0][1], msk[1][1], dst[0], plane_, env);
+                    combineMasks_avx512<uint16_t, Vec32us, 32>(dst[0], dst[1], plane_, env);
+                }
+                else if ((!!(env->GetCPUFlags() & CPUF_AVX2) && opt_ < 0) || opt_ == 2)
                 {
                     for (int i = 0; i < 3; i++)
                     {

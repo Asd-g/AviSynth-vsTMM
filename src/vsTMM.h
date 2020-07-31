@@ -93,6 +93,15 @@ class CreateMM : public Common
     template<typename T1, typename T2, int step>
     void combineMasks_avx2(PVideoFrame& src, PVideoFrame& dst, const int plane, IScriptEnvironment* env) noexcept;
 
+    template<typename T1, typename T2, int step>
+    void threshMask_avx512(PVideoFrame& src, PVideoFrame& dst, int plane, IScriptEnvironment* env) noexcept;
+    template<typename T1, typename T2, int step>
+    void motionMask_avx512(PVideoFrame& src1, PVideoFrame& msk1, PVideoFrame& src2, PVideoFrame& msk2, PVideoFrame& dst, const int plane, IScriptEnvironment* env) noexcept;
+    template<typename T1, typename T2, int step>
+    void andMasks_avx512(PVideoFrame& src1, PVideoFrame& src2, PVideoFrame& dst, const int plane, IScriptEnvironment* env) noexcept;
+    template<typename T1, typename T2, int step>
+    void combineMasks_avx512(PVideoFrame& src, PVideoFrame& dst, const int plane, IScriptEnvironment* env) noexcept;
+
 public:
     CreateMM(PClip _child, int ttype, int mtqL, int mthL, int mtqC, int mthC, int nt, int minthresh, int maxthresh, int cstr, int y, int u, int v, int opt, IScriptEnvironment* env);
     PVideoFrame __stdcall GetFrame(int n, IScriptEnvironment* env);
