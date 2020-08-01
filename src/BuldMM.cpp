@@ -3,8 +3,8 @@
 template<typename T>
 void BuildMM::buildMask(PVideoFrame* cSrc, PVideoFrame* oSrc, PVideoFrame& dst, const int cCount, const int oCount, const int order, const int field, IScriptEnvironment* env) noexcept
 {
-    const uint8_t* tmmlut = tmmlut16.data() + order * static_cast<int64_t>(8) + field * static_cast<int64_t>(4);
-    uint8_t tmmlutf[64];
+    const uint16_t* tmmlut = tmmlut16.data() + order * static_cast<int64_t>(8) + field * static_cast<int64_t>(4);
+    uint16_t tmmlutf[64];
 
     for (int i = 0; i < 64; i++)
         tmmlutf[i] = tmmlut[vlut[i]];
@@ -52,12 +52,12 @@ void BuildMM::buildMask(PVideoFrame* cSrc, PVideoFrame* oSrc, PVideoFrame& dst, 
             if (field == 1)
             {
                 for (int j = 0; j < height; j += 2)
-                    std::fill_n(dstp + stride * static_cast<int64_t>(j), width, static_cast<T>(10));
+                    std::fill_n(dstp + stride * static_cast<int64_t>(j), width, static_cast<T>(ten));
                 dstp += stride;
             }
             else
                 for (int j = 1; j < height; j += 2)
-                    std::fill_n(dstp + stride * static_cast<int64_t>(j), width, static_cast<T>(10));
+                    std::fill_n(dstp + stride * static_cast<int64_t>(j), width, static_cast<T>(ten));
 
             for (int y = field; y < height; y += 2)
             {
@@ -65,7 +65,7 @@ void BuildMM::buildMask(PVideoFrame* cSrc, PVideoFrame* oSrc, PVideoFrame& dst, 
                 {
                     if (!ptlut[1][ct - 2][x] && !ptlut[1][ct][x] && !ptlut[1][ct + 1][x])
                     {
-                        dstp[x] = 60;
+                        dstp[x] = static_cast<T>(sixty);
                         continue;
                     }
 
@@ -99,7 +99,7 @@ void BuildMM::buildMask(PVideoFrame* cSrc, PVideoFrame* oSrc, PVideoFrame& dst, 
                         if (vlut[val] == 2)
                             break;
                     }
-                    dstp[x] = tmmlutf[val];
+                    dstp[x] = static_cast<T>(tmmlutf[val]);
                 }
 
                 for (int i = 0; i < cCount; i++)
@@ -191,8 +191,8 @@ BuildMM::BuildMM(PClip _child, PClip bf, int mode, int order, int field, int len
 
     tmmlut16 =
     {
-        60, 20, 50, 10, 60, 10, 40, 30,
-        60, 10, 40, 30, 60, 20, 50, 10
+        sixty, twenty, fifty, ten, sixty, ten, forty, thirty,
+        sixty, ten, forty, thirty, sixty, twenty, fifty, ten
     };
 }
 

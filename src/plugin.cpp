@@ -96,9 +96,9 @@ AVSValue __cdecl Create_vsTMM(AVSValue args, void* user_data, IScriptEnvironment
 	if (expand < 0)
 		env->ThrowError("vsTMM: expand must be greater than or equal to 0");
 
-	int y = args[19].AsInt(3);
-	int u = args[20].AsInt(3);
-	int v = args[21].AsInt(3);
+	int y = args[20].AsInt(3);
+	int u = args[21].AsInt(3);
+	int v = args[22].AsInt(3);
 
 	if (y < 1 || y > 3)
 		env->ThrowError("vsTMM: y must be between 1..3");
@@ -107,7 +107,7 @@ AVSValue __cdecl Create_vsTMM(AVSValue args, void* user_data, IScriptEnvironment
 	if (v < 1 || v > 3)
 		env->ThrowError("vsTMM: y must be between 1..3");
 
-	int opt = args[22].AsInt(-1);
+	int opt = args[23].AsInt(-1);
 
 	if (opt < -1 || opt > 3)
 		env->ThrowError("vsTMM: opt must be between -1..3");
@@ -131,7 +131,7 @@ AVSValue __cdecl Create_vsTMM(AVSValue args, void* user_data, IScriptEnvironment
 
 		PClip mask = new BuildMM(topf, botf, mode, order, field, length, mtype, y, u, v, env);
 
-		return new BinaryMM(mask, athresh, metric, expand, args[18].AsBool(true), args[0].AsClip(), mode, order, field, y, u, v, env);
+		return new BinaryMM(mask, athresh, metric, expand, args[18].AsBool(false), args[19].AsBool(true), args[0].AsClip(), mode, order, field, y, u, v, env);
 	}
 
 	catch (IScriptEnvironment::NotFound)
@@ -155,7 +155,7 @@ AvisynthPluginInit3(IScriptEnvironment * env, const AVS_Linkage* const vectors)
 {
 	AVS_linkage = vectors;
 
-	env->AddFunction("vsTMM", "c[mode]i[order]i[field]i[length]i[mtype]i[ttype]i[mtqL]i[mthL]i[mtqC]i[mthC]i[nt]i[minthresh]i[maxthresh]i[cstr]i[athresh]i[metric]i[expand]i[link]b[y]i[u]i[v]i[opt]i", Create_vsTMM, 0);
+	env->AddFunction("vsTMM", "c[mode]i[order]i[field]i[length]i[mtype]i[ttype]i[mtqL]i[mthL]i[mtqC]i[mthC]i[nt]i[minthresh]i[maxthresh]i[cstr]i[athresh]i[metric]i[expand]i[binary]b[link]b[y]i[u]i[v]i[opt]i", Create_vsTMM, 0);
 
 	return "vsTMM";
 }

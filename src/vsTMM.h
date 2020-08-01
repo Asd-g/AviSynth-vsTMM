@@ -13,6 +13,7 @@ protected:
     bool has_at_least_v8;
     const int planes[4] = { PLANAR_Y, PLANAR_U, PLANAR_V, PLANAR_A };
     const int planecount = std::min(vi.NumComponents(), 3);
+    uint16_t ten, twenty, thirty, forty, fifty, sixty, seventy;
 
 public:
     Common(PClip clip, int y, int u, int v, IScriptEnvironment* env)
@@ -52,6 +53,15 @@ public:
         has_at_least_v8 = true;
         try { env->CheckVersion(8); }
         catch (const AvisynthError&) { has_at_least_v8 = false; }
+
+        const int peak = (1 << vi.BitsPerComponent()) - 1;
+        ten = 10 * peak / 255;
+        twenty = 20 * peak / 255;
+        thirty = 30 * peak / 255;
+        forty = 40 * peak / 255;
+        fifty = 50 * peak / 255;
+        sixty = 60 * peak / 255;
+        seventy = 70 * peak / 255;
     }
 
     int __stdcall SetCacheHints(int cachehints, int frame_range)
@@ -113,7 +123,7 @@ class BuildMM : public Common
     PClip bf_;
     uint8_t* gvlut;
     std::array<uint8_t, 64> vlut;
-    std::array<uint8_t, 16> tmmlut16;
+    std::array<uint16_t, 16> tmmlut16;
     VideoInfo viSaved;
 
     template<typename T>
@@ -127,13 +137,11 @@ public:
 class BinaryMM : public Common
 {
     int athresh_, metric_, expand_;
-    bool link_;
+    bool binary_, link_;
     int athresh6, athreshsq, peak;
     int mode_, order_, field_;
     PClip clip_;
 
-    template<typename T>
-    void setMaskForUpsize(PVideoFrame& mask, const int field, IScriptEnvironment* env) noexcept;
     template<typename T>
     void checkSpatial(PVideoFrame& src, PVideoFrame& dst, IScriptEnvironment* env) noexcept;
     template<typename T>
@@ -144,6 +152,6 @@ class BinaryMM : public Common
     void binaryMask(PVideoFrame& src, PVideoFrame& dst, IScriptEnvironment* env) noexcept;
 
 public:
-    BinaryMM(PClip _child, int athresh, int metric, int expand, bool link, PClip clip, int mode, int order, int field, int y, int u, int v, IScriptEnvironment* env);
+    BinaryMM(PClip _child, int athresh, int metric, int expand, bool binary, bool link, PClip clip, int mode, int order, int field, int y, int u, int v, IScriptEnvironment* env);
     PVideoFrame __stdcall GetFrame(int n, IScriptEnvironment* env);
 };

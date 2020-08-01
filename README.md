@@ -7,7 +7,7 @@ This is [a port of the VapourSynth TMM](https://github.com/HomeOfVapourSynthEvol
 # Usage
 
 ```
-vsTMM (clip, int "mode", int "order", int "field", int "length", int "mtype", int "ttype", int "mtqL", int "mthL", int "mtqC", int "mthC", int "nt", int "minthresh", int "maxthresh", int "cstr", int "athresh", int "metric", int "expand", bool "link", int "y", int "u", int "v", int "opt")
+vsTMM (clip, int "mode", int "order", int "field", int "length", int "mtype", int "ttype", int "mtqL", int "mthL", int "mtqC", int "mthC", int "nt", int "minthresh", int "maxthresh", int "cstr", int "athresh", int "metric", int "expand", bool "binary", bool "link", int "y", int "u", int "v", int "opt")
 ```
 
 ## Parameters:
@@ -109,10 +109,15 @@ vsTMM (clip, int "mode", int "order", int "field", int "length", int "mtype", in
     Sets the number of pixels to expand the comb mask horizontally on each side of combed pixels. Basically, if expand is greater than 0 then TMM will consider all pixels within 'expand' distance horizontally of a detected combed pixel to be combed as well. Can be useful when some combed pixels got missed in spatial adaptation.\
     Must be greater than or equal to 0.\
     Default: 0.
+    
+- binary\
+    True: The output is binary comb mask.\
+    False: The output is motion mask.\
+    Default: False.
 
 - link\
     Controls whether the luma plane is linked to chroma plane during comb mask creation.\
-    Default: True. When the clip is Y or when luma plane is not filtered link = false.
+    Default: True. When the clip is Y or when luma plane is not filtered link = false. It does not have effect when binary = false.
     
 - y, u, v\
     Planes to process.\

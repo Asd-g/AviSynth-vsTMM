@@ -28,8 +28,8 @@ void BinaryMM::checkSpatial(PVideoFrame& src, PVideoFrame& dst, IScriptEnvironme
                 {
                     const int sFirst = srcp[x] - srcpn[x];
 
-                    if (dstp[x] == 60 && !((sFirst > athresh_ || sFirst < -athresh_) && std::abs(srcpnn[x] + srcp[x] * 4 + srcpnn[x] - 3 * (srcpn[x] + srcpn[x])) > athresh6))
-                        dstp[x] = 10;
+                    if (dstp[x] == sixty && !((sFirst > athresh_ || sFirst < -athresh_) && std::abs(srcpnn[x] + srcp[x] * 4 + srcpnn[x] - 3 * (srcpn[x] + srcpn[x])) > athresh6))
+                        dstp[x] = ten;
                 }
 
                 srcppp += stride;
@@ -44,8 +44,8 @@ void BinaryMM::checkSpatial(PVideoFrame& src, PVideoFrame& dst, IScriptEnvironme
                     const int sFirst = srcp[x] - srcpp[x];
                     const int sSecond = srcp[x] - srcpn[x];
 
-                    if (dstp[x] == 60 && !(((sFirst > athresh_ && sSecond > athresh_) || (sFirst < -athresh_ && sSecond < -athresh_)) && std::abs(srcpnn[x] + srcp[x] * 4 + srcpnn[x] - 3 * (srcpp[x] + srcpn[x])) > athresh6))
-                        dstp[x] = 10;
+                    if (dstp[x] == sixty && !(((sFirst > athresh_ && sSecond > athresh_) || (sFirst < -athresh_ && sSecond < -athresh_)) && std::abs(srcpnn[x] + srcp[x] * 4 + srcpnn[x] - 3 * (srcpp[x] + srcpn[x])) > athresh6))
+                        dstp[x] = ten;
                 }
 
                 srcppp += stride;
@@ -62,8 +62,8 @@ void BinaryMM::checkSpatial(PVideoFrame& src, PVideoFrame& dst, IScriptEnvironme
                         const int sFirst = srcp[x] - srcpp[x];
                         const int sSecond = srcp[x] - srcpn[x];
 
-                        if (dstp[x] == 60 && !(((sFirst > athresh_ && sSecond > athresh_) || (sFirst < -athresh_ && sSecond < -athresh_)) && std::abs(srcppp[x] + srcp[x] * 4 + srcpnn[x] - 3 * (srcpp[x] + srcpn[x])) > athresh6))
-                            dstp[x] = 10;
+                        if (dstp[x] == sixty && !(((sFirst > athresh_ && sSecond > athresh_) || (sFirst < -athresh_ && sSecond < -athresh_)) && std::abs(srcppp[x] + srcp[x] * 4 + srcpnn[x] - 3 * (srcpp[x] + srcpn[x])) > athresh6))
+                            dstp[x] = ten;
                     }
 
                     srcppp += stride;
@@ -79,8 +79,8 @@ void BinaryMM::checkSpatial(PVideoFrame& src, PVideoFrame& dst, IScriptEnvironme
                     const int sFirst = srcp[x] - srcpp[x];
                     const int sSecond = srcp[x] - srcpn[x];
 
-                    if (dstp[x] == 60 && !(((sFirst > athresh_ && sSecond > athresh_) || (sFirst < -athresh_ && sSecond < -athresh_)) && std::abs(srcppp[x] + srcp[x] * 4 + srcppp[x] - 3 * (srcpp[x] + srcpn[x])) > athresh6))
-                        dstp[x] = 10;
+                    if (dstp[x] == sixty && !(((sFirst > athresh_ && sSecond > athresh_) || (sFirst < -athresh_ && sSecond < -athresh_)) && std::abs(srcppp[x] + srcp[x] * 4 + srcppp[x] - 3 * (srcpp[x] + srcpn[x])) > athresh6))
+                        dstp[x] = ten;
                 }
 
                 srcppp += stride;
@@ -94,16 +94,16 @@ void BinaryMM::checkSpatial(PVideoFrame& src, PVideoFrame& dst, IScriptEnvironme
                 {
                     const int sFirst = srcp[x] - srcpp[x];
 
-                    if (dstp[x] == 60 && !((sFirst > athresh_ || sFirst < -athresh_) && std::abs(srcppp[x] + srcp[x] * 4 + srcppp[x] - 3 * (srcpp[x] + srcpp[x])) > athresh6))
-                        dstp[x] = 10;
+                    if (dstp[x] == sixty && !((sFirst > athresh_ || sFirst < -athresh_) && std::abs(srcppp[x] + srcp[x] * 4 + srcppp[x] - 3 * (srcpp[x] + srcpp[x])) > athresh6))
+                        dstp[x] = ten;
                 }
             }
             else
             {
                 for (int x = 0; x < width; x++)
                 {
-                    if (dstp[x] == 60 && !((srcp[x] - srcpn[x]) * (srcp[x] - srcpn[x]) > athreshsq))
-                        dstp[x] = 10;
+                    if (dstp[x] == sixty && !((srcp[x] - srcpn[x]) * (srcp[x] - srcpn[x]) > athreshsq))
+                        dstp[x] = ten;
                 }
 
                 srcpp += stride;
@@ -115,8 +115,8 @@ void BinaryMM::checkSpatial(PVideoFrame& src, PVideoFrame& dst, IScriptEnvironme
                 {
                     for (int x = 0; x < width; x++)
                     {
-                        if (dstp[x] == 60 && !((srcp[x] - srcpp[x]) * (srcp[x] - srcpn[x]) > athreshsq))
-                            dstp[x] = 10;
+                        if (dstp[x] == sixty && !((srcp[x] - srcpp[x]) * (srcp[x] - srcpn[x]) > athreshsq))
+                            dstp[x] = ten;
                     }
 
                     srcpp += stride;
@@ -127,8 +127,8 @@ void BinaryMM::checkSpatial(PVideoFrame& src, PVideoFrame& dst, IScriptEnvironme
 
                 for (int x = 0; x < width; x++)
                 {
-                    if (dstp[x] == 60 && !((srcp[x] - srcpp[x]) * (srcp[x] - srcpp[x]) > athreshsq))
-                        dstp[x] = 10;
+                    if (dstp[x] == sixty && !((srcp[x] - srcpp[x]) * (srcp[x] - srcpp[x]) > athreshsq))
+                        dstp[x] = ten;
                 }
             }
         }
@@ -155,12 +155,12 @@ void BinaryMM::expandMask(PVideoFrame& mask, const int field, IScriptEnvironment
             {
                 for (int x = 0; x < width; x++)
                 {
-                    if (maskp[x] == 60)
+                    if (maskp[x] == sixty)
                     {
                         int xt = x - 1;
 
                         while (xt >= 0 && xt >= x - dis)
-                            maskp[xt--] = 60;
+                            maskp[xt--] = sixty;
 
                         xt = x + 1;
 
@@ -168,13 +168,13 @@ void BinaryMM::expandMask(PVideoFrame& mask, const int field, IScriptEnvironment
 
                         while (xt < width && xt <= x + dis)
                         {
-                            if (maskp[xt] == 60)
+                            if (maskp[xt] == sixty)
                             {
                                 nc = xt;
                                 break;
                             }
                             else
-                                maskp[xt++] = 60;
+                                maskp[xt++] = sixty;
                         }
 
                         x = nc - 1;
@@ -209,13 +209,13 @@ void BinaryMM::linkMask(PVideoFrame& mask, const int field, IScriptEnvironment* 
             {
                 if (vi.GetPlaneHeightSubsampling(PLANAR_U) == 0)
                 {
-                    if (maskpY[x] == 0x3C)
-                        maskpU[x] = maskpV[x] = 0x3C;
+                    if (maskpY[x] == sixty)
+                        maskpU[x] = maskpV[x] = sixty;
                 }
                 else
                 {
-                    if (maskpY[x] == 0x3C && maskpnY[x] == 0x3C)
-                        maskpU[x] = maskpV[x] = 0x3C;
+                    if (maskpY[x] == sixty && maskpnY[x] == sixty)
+                        maskpU[x] = maskpV[x] = sixty;
                 }
             }
             else
@@ -225,25 +225,25 @@ void BinaryMM::linkMask(PVideoFrame& mask, const int field, IScriptEnvironment* 
                     if (vi.GetPlaneHeightSubsampling(PLANAR_U) == 0)
                     {
                         if (reinterpret_cast<const uint16_t*>(maskpY)[x] == 0x3C3C)
-                            maskpU[x] = maskpV[x] = 0x3C;
+                            maskpU[x] = maskpV[x] = sixty;
                     }
                     else
                     {
                         if (reinterpret_cast<const uint16_t*>(maskpY)[x] == 0x3C3C && reinterpret_cast<const uint16_t*>(maskpnY)[x] == 0x3C3C)
-                            maskpU[x] = maskpV[x] = 0x3C;
+                            maskpU[x] = maskpV[x] = sixty;
                     }
                 }
                 else
                 {
                     if (vi.GetPlaneHeightSubsampling(PLANAR_U) == 0)
                     {
-                        if (reinterpret_cast<const uint32_t*>(maskpY)[x] == 0x3C003C)
-                            maskpU[x] = maskpV[x] = 0x3C;
+                        if (reinterpret_cast<const uint32_t*>(maskpY)[x] == 0x3C3C3C3C)
+                            maskpU[x] = maskpV[x] = sixty;
                     }
                     else
                     {
-                        if (reinterpret_cast<const uint32_t*>(maskpY)[x] == 0x3C003C && reinterpret_cast<const uint32_t*>(maskpnY)[x] == 0x3C003C)
-                            maskpU[x] = maskpV[x] = 0x3C;
+                        if (reinterpret_cast<const uint32_t*>(maskpY)[x] == 0x3C3C3C3C && reinterpret_cast<const uint32_t*>(maskpnY)[x] == 0x3C3C3C3C)
+                            maskpU[x] = maskpV[x] = sixty;
                     }
                 }
             }
@@ -275,7 +275,7 @@ void BinaryMM::binaryMask(PVideoFrame& src, PVideoFrame& dst, IScriptEnvironment
             for (int y = 0; y < height; y++)
             {
                 for (int x = 0; x < width; x++)
-                    dstp[x] = (srcp[x] == 60) ? peak : 0;
+                    dstp[x] = (srcp[x] == sixty) ? peak : 0;
 
                 srcp += stride;
                 dstp += dst_stride;
@@ -284,8 +284,8 @@ void BinaryMM::binaryMask(PVideoFrame& src, PVideoFrame& dst, IScriptEnvironment
     }
 }
 
-BinaryMM::BinaryMM(PClip _child, int athresh, int metric, int expand, bool link, PClip clip, int mode, int order, int field, int y, int u, int v, IScriptEnvironment* env)
-    : Common(_child, y, u, v, env), athresh_(athresh), metric_(metric), expand_(expand), link_(link), mode_(mode), order_(order), field_(field), clip_(clip)
+BinaryMM::BinaryMM(PClip _child, int athresh, int metric, int expand, bool binary, bool link, PClip clip, int mode, int order, int field, int y, int u, int v, IScriptEnvironment* env)
+    : Common(_child, y, u, v, env), athresh_(athresh), metric_(metric), expand_(expand), binary_(binary), link_(link), mode_(mode), order_(order), field_(field), clip_(clip)
 {
     peak = (1 << vi.BitsPerComponent()) - 1;
     athresh_ = athresh_ > -1 ? athresh_ * peak / 255 : -1;
@@ -305,39 +305,68 @@ PVideoFrame __stdcall BinaryMM::GetFrame(int n, IScriptEnvironment* env)
 
     PVideoFrame src = clip_->GetFrame(n, env);
     PVideoFrame dst = has_at_least_v8 ? env->NewVideoFrameP(vi, &src) : env->NewVideoFrame(vi);
-
-    for (int i = 0; i < planecount; ++i)
-    {
-        const int plane = planes[i];
-
-        if (process[i] == 2)
-            env->BitBlt(dst->GetWritePtr(plane), dst->GetPitch(plane), src->GetReadPtr(plane), src->GetPitch(plane), src->GetRowSize(plane), src->GetHeight(plane));
-    }
-
     PVideoFrame mask = child->GetFrame(n, env);
 
-    if (vi.ComponentSize() == 1)
+    if (!binary_)
     {
-        if (athresh_ > -1)
-            checkSpatial<uint8_t>(src, mask, env);
-        if (expand_)
-            expandMask<uint8_t>(mask, field, env);
-        if (link_)
-            linkMask<uint8_t>(mask, field, env);
+        for (int i = 0; i < planecount; ++i)
+        {
+            const int plane = planes[i];
 
-        binaryMask<uint8_t>(mask, dst, env);
+            if (process[i] == 2)
+                env->BitBlt(mask->GetWritePtr(plane), mask->GetPitch(plane), src->GetReadPtr(plane), src->GetPitch(plane), src->GetRowSize(plane), src->GetHeight(plane));
+        }
+
+        if (vi.ComponentSize() == 1)
+        {
+            if (athresh_ > -1)
+                checkSpatial<uint8_t>(src, mask, env);
+            if (expand_)
+                expandMask<uint8_t>(mask, field, env);
+        }
+        else
+        {
+            if (athresh_ > -1)
+                checkSpatial<uint16_t>(src, mask, env);
+            if (expand_)
+                expandMask<uint16_t>(mask, field, env);
+        }
+
+        return mask;
     }
     else
     {
-        if (athresh_ > -1)
-            checkSpatial<uint16_t>(src, mask, env);
-        if (expand_)
-            expandMask<uint16_t>(mask, field, env);
-        if (link_)
-            linkMask<uint16_t>(mask, field, env);
+        for (int i = 0; i < planecount; ++i)
+        {
+            const int plane = planes[i];
 
-        binaryMask<uint16_t>(mask, dst, env);
+            if (process[i] == 2)
+                env->BitBlt(dst->GetWritePtr(plane), dst->GetPitch(plane), src->GetReadPtr(plane), src->GetPitch(plane), src->GetRowSize(plane), src->GetHeight(plane));
+        }
+
+        if (vi.ComponentSize() == 1)
+        {
+            if (athresh_ > -1)
+                checkSpatial<uint8_t>(src, mask, env);
+            if (expand_)
+                expandMask<uint8_t>(mask, field, env);
+            if (link_)
+                linkMask<uint8_t>(mask, field, env);
+
+            binaryMask<uint8_t>(mask, dst, env);
+        }
+        else
+        {
+            if (athresh_ > -1)
+                checkSpatial<uint16_t>(src, mask, env);
+            if (expand_)
+                expandMask<uint16_t>(mask, field, env);
+            if (link_)
+                linkMask<uint16_t>(mask, field, env);
+
+            binaryMask<uint16_t>(mask, dst, env);
+        }
+
+        return dst;
     }
-
-    return dst;
 }
