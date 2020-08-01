@@ -61,7 +61,6 @@ public:
         forty = 40 * peak / 255;
         fifty = 50 * peak / 255;
         sixty = 60 * peak / 255;
-        seventy = 70 * peak / 255;
     }
 
     int __stdcall SetCacheHints(int cachehints, int frame_range)
