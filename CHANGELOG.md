@@ -1,3 +1,6 @@
+##### 1.2.0:
+    Added eight parameter.
+
 ##### 1.1.0:
     Added binary parameter.
 

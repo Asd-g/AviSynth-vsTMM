@@ -7,7 +7,7 @@ This is [a port of the VapourSynth TMM](https://github.com/HomeOfVapourSynthEvol
 # Usage
 
 ```
-vsTMM (clip, int "mode", int "order", int "field", int "length", int "mtype", int "ttype", int "mtqL", int "mthL", int "mtqC", int "mthC", int "nt", int "minthresh", int "maxthresh", int "cstr", int "athresh", int "metric", int "expand", bool "binary", bool "link", int "y", int "u", int "v", int "opt")
+vsTMM (clip, int "mode", int "order", int "field", int "length", int "mtype", int "ttype", int "mtqL", int "mthL", int "mtqC", int "mthC", int "nt", int "minthresh", int "maxthresh", int "cstr", int "athresh", int "metric", int "expand", bool "binary", bool "link", bool "eight", int "y", int "u", int "v", int "opt")
 ```
 
 ## Parameters:
@@ -118,6 +118,11 @@ vsTMM (clip, int "mode", int "order", int "field", int "length", int "mtype", in
 - link\
     Controls whether the luma plane is linked to chroma plane during comb mask creation.\
     Default: True. When the clip is Y or when luma plane is not filtered link = false. It does not have effect when binary = false.
+    
+- eight\
+    True: The output is 8-bit.\
+    False: The output has the same bit depth as the input.\
+    Default: True.
     
 - y, u, v\
     Planes to process.\
