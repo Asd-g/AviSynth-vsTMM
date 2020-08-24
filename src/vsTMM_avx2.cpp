@@ -1,3 +1,5 @@
+#include <limits>
+
 #include "vsTMM.h"
 
 #if !defined(__AVX2__)

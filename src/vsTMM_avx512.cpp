@@ -1,3 +1,5 @@
+#include <limits>
+
 #include "vsTMM.h"
 
 #if !defined(__AVX512F__ ) && !defined(__INTEL_COMPILER)

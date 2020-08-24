@@ -11,8 +11,8 @@ AVSValue __cdecl Create_vsTMM(AVSValue args, void* user_data, IScriptEnvironment
 
 	if (vi.IsFieldBased())
 		env->ThrowError("vsTMM:  input clip cannot be field based!");
-	if (vi.IsRGB() || vi.BitsPerComponent() == 32)
-		env->ThrowError("vsTMM: clip must be 8..16 bit in Y/YUV format.");
+	if (vi.IsRGB() || vi.BitsPerComponent() == 32 || !vi.IsPlanar())
+		env->ThrowError("vsTMM: clip must be 8..16 bit in Y/YUV planar format.");
 	if (vi.height < 4)
 		env->ThrowError("vsTMM: height must be greater than or equal to 4");
 	if (vi.width & 1 || vi.height & 1)

@@ -1,3 +1,6 @@
+##### 1.2.1:
+    Throw error for non-planar formats.
+
 ##### 1.2.0:
     Added eight parameter.
 

@@ -1,3 +1,5 @@
+#include <limits>
+
 #include "vsTMM.h"
 
 template<typename T>
