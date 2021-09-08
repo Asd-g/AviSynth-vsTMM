@@ -1,16 +1,22 @@
-# Description
+## Description
 
 TMM builds a motion-mask for TDeint. 
 
 This is [a port of the VapourSynth TMM](https://github.com/HomeOfVapourSynthEvolution/VapourSynth-TDeintMod).
 
-# Usage
+### Requirements:
+
+- AviSynth 2.60 / AviSynth+ 3.4 or later
+
+- Microsoft VisualC++ Redistributable Package 2022 (can be downloaded from [here](https://github.com/abbodi1406/vcredist/releases))
+
+### Usage:
 
 ```
 vsTMM (clip, int "mode", int "order", int "field", int "length", int "mtype", int "ttype", int "mtqL", int "mthL", int "mtqC", int "mthC", int "nt", int "minthresh", int "maxthresh", int "cstr", int "athresh", int "metric", int "expand", bool "binary", bool "link", bool "eight", int "y", int "u", int "v", int "opt")
 ```
 
-## Parameters:
+### Parameters:
 
 - clip\
     A clip to process. It must be in 8..16-bit YUV format.
